@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار في سيرة سيدنا إبراهيم عليه السلام</title>
+    <!-- استدعاء الخطوط العربية التراثية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Mode Clair (Par défaut) */
+            --bg-color: #f5ece1;
+            --card-bg: #fffdf9;
+            --primary-color: #8c2d19;
+            --primary-hover: #a63821;
+            --gold-color: #c8963e;
+            --text-color: #2c1d11;
+            --border-color: #d8c3a5;
+            --success-bg: #e8f5e9;
+            --success-border: #2e7d32;
+            --success-text: #1b5e20;
+            --error-bg: #ffebee;
+            --error-border: #c62828;
+            --error-text: #b71c1c;
+            --pattern-stroke: #8c2d19;
+            --pattern-opacity: 0.22;
+            --footer-text-color: #5a2012;
+        }
+
+        /* Mode Sombre */
+        body.dark-mode {
+            --bg-color: #1a1512;
+            --card-bg: #27201c;
+            --primary-color: #d4a373;
+            --primary-hover: #e6b88a;
+            --gold-color: #e5c158;
+            --text-color: #f4eae1;
+            --border-color: #4d3e34;
+            --success-bg: #1b3821;
+            --success-border: #4caf50;
+            --success-text: #a5d6a7;
+            --error-bg: #3d1c1c;
+            --error-border: #ef5350;
+            --error-text: #ef9a9a;
+            --pattern-stroke: #d4a373;
+            --pattern-opacity: 0.18;
+            --footer-text-color: #e6c8b0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Amiri', serif;
+            background-color: var(--bg-color);
+            /* Motif géométrique إسلامي 8 أضلاع */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath fill='none' stroke='%238c2d19' stroke-width='1.8' stroke-opacity='0.25' d='M40 0 L50 10 L50 25 L40 35 L30 25 L30 10 Z M0 40 L10 50 L25 50 L35 40 L25 30 L10 30 Z M40 40 L50 50 L50 65 L40 75 L30 65 L30 50 Z M40 40 L50 30 L65 30 L75 40 L65 50 L50 50 Z M0 0 L15 15 M80 0 L65 15 M0 80 L15 65 M80 80 L65 65 M40 0 L40 80 M0 40 L80 40 M11.72 11.72 L68.28 68.28 M68.28 11.72 L11.72 68.28'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 90px 90px;
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 15px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath fill='none' stroke='%23d4a373' stroke-width='1.8' stroke-opacity='0.22' d='M40 0 L50 10 L50 25 L40 35 L30 25 L30 10 Z M0 40 L10 50 L25 50 L35 40 L25 30 L10 30 Z M40 40 L50 50 L50 65 L40 75 L30 65 L30 50 Z M40 40 L50 30 L65 30 L75 40 L65 50 L50 50 Z M0 0 L15 15 M80 0 L65 15 M0 80 L15 65 M80 80 L65 65 M40 0 L40 80 M0 40 L80 40 M11.72 11.72 L68.28 68.28 M68.28 11.72 L11.72 68.28'/%3E%3C/svg%3E");
+        }
+
+        /* أزرار التحكم العلوي */
+        .top-controls {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .control-btn {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            color: var(--text-color);
+            padding: 8px 14px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-family: 'Amiri', serif;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .quiz-container {
+            background-color: var(--card-bg);
+            border: 3px solid var(--primary-color);
+            border-radius: 18px;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+            width: 100%;
+            max-width: 820px;
+            padding: 25px;
+            position: relative;
+            margin: auto;
+        }
+
+        .quiz-container::before {
+            content: "";
+            position: absolute;
+            top: 5px; right: 5px; bottom: 5px; left: 5px;
+            border: 1px solid var(--gold-color);
+            border-radius: 14px;
+            pointer-events: none;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px dashed var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Aref Ruqaa', serif;
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: bold;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0,0,0,0.04);
+            padding: 10px 18px;
+            border-radius: 30px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .stars-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--gold-color);
+            font-size: 1.4rem;
+        }
+
+        .image-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            max-height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 18px;
+            border: 2px solid var(--border-color);
+            background-color: rgba(0,0,0,0.04);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 9px;
+            background-color: var(--border-color);
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 10%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .question-text {
+            font-size: 1.35rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            text-align: right;
+        }
+
+        .options-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .option-btn {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px 18px;
+            font-family: 'Amiri', serif;
+            font-size: 1.15rem;
+            text-align: right;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            line-height: 1.5;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            border-color: var(--primary-color);
+            background-color: rgba(0,0,0,0.02);
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+        }
+
+        .option-btn.correct {
+            background-color: var(--success-bg) !important;
+            border-color: var(--success-border) !important;
+            color: var(--success-text) !important;
+            font-weight: bold;
+        }
+
+        .option-btn.wrong {
+            background-color: var(--error-bg) !important;
+            border-color: var(--error-border) !important;
+            color: var(--error-text) !important;
+        }
+
+        .explanation-box {
+            background-color: var(--success-bg);
+            border-right: 5px solid var(--success-border);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--success-text);
+        }
+
+        .actions-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .feedback-text {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .btn-next {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 10px 25px;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            display: none;
+        }
+
+        .btn-next:hover {
+            opacity: 0.9;
+        }
+
+        .result-screen {
+            text-align: center;
+            padding: 20px 10px;
+            display: none;
+        }
+
+        .result-screen h2 {
+            font-family: 'Aref Ruqaa', serif;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .total-stars {
+            font-size: 3rem;
+            color: var(--gold-color);
+            margin: 15px 0;
+        }
+
+        .badge-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            background: rgba(0,0,0,0.05);
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .summary-pedagogical {
+            text-align: right;
+            background-color: rgba(0,0,0,0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            margin: 20px 0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .summary-pedagogical h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-family: 'Aref Ruqaa', serif;
+        }
+
+        .restart-btn {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            font-family: 'Reem Kufi', sans-serif;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /* تحسين وضوح توثيق الحقوق أسفل التطبيق */
+        footer {
+            margin-top: 25px;
+            padding: 12px;
+            text-align: center;
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: var(--footer-text-color);
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 820px;
+        }
+
+        @media (max-width: 600px) {
+            .quiz-container { padding: 15px; }
+            h1 { font-size: 1.6rem; }
+            .question-text { font-size: 1.15rem; }
+            .option-btn { font-size: 1rem; padding: 10px; }
+            .top-controls { top: 10px; left: 10px; }
+            footer { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-controls">
+    <button class="control-btn" onclick="toggleDarkMode()" title="تبديل الوضع">
+        <span id="theme-icon">🌙</span> <span id="theme-text">الوضع الداكن</span>
+    </button>
+    <button class="control-btn" onclick="toggleFullScreen()" title="ملء الشاشة">
+        🖥️ <span>ملء الشاشة</span>
+    </button>
+</div>
+
+<div class="quiz-container">
+    <header>
+        <h1>اختبار في سيرة خليل الله إبراهيم عليه السلام</h1>
+        <div class="subtitle">مادة التربية الإسلامية - السنة التاسعة أساسي</div>
+    </header>
+
+    <div id="quiz-screen">
+        <div class="status-bar">
+            <span id="question-number">السؤال الأوّل من أصل عشرة</span>
+            <div class="stars-container">
+                <span>المجموع:</span>
+                <span id="score-stars">0</span> 🌟
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img id="question-image" src="images/q1.jpg" alt="مشهد تاريخي" onerror="this.src='https://placehold.co/800x450/e8ded0/8c2d19?text=مشهد+تاريخي+تفاعلي'">
+        </div>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progress-bar"></div>
+        </div>
+
+        <div class="question-text" id="question-text">نص السؤال يظهر هنا...</div>
+
+        <ul class="options-list" id="options-list"></ul>
+
+        <div class="explanation-box" id="explanation-box"></div>
+
+        <div class="actions-bar">
+            <div class="feedback-text" id="feedback-text"></div>
+            <button class="btn-next" id="next-btn" onclick="nextQuestion()">السؤال التالي &#129144;</button>
+        </div>
+    </div>
+
+    <div class="result-screen" id="result-screen">
+        <h2>أحسنت! أتممت الاختبار بنجاح</h2>
+        <p style="font-size: 1.2rem;">حصلت على مجموع نجوم:</p>
+        <div class="total-stars" id="final-stars">0 🌟</div>
+        <div class="badge-title" id="badge-title">تلميذ متألق في السيرة النبوية</div>
+
+        <div class="summary-pedagogical">
+            <h3>📌 خلاصة:</h3>
+            <ul>
+                <li><strong>البيئة والنشأة:</strong> ولد إبراهيم عليه السلام ببابل في بيئة تعبد الأصنام والأجسام السماوية.</li>
+                <li><strong>المنهج الفكري:</strong> اعتمد على التفكير المنطقي الحكيم لدعوة قومه (قصة الأفول: {لا أُحِبُّ الآفِلِينَ}).</li>
+                <li><strong>الثبات والتوكل:</strong> ضرب أروع الأمثلة في الصبر عند إلقائه في النار فكانت برداً وسلاماً.</li>
+                <li><strong>الأثر الخالد:</strong> رفع قواعد الكعبة المشرفة مع ابنه إسماعيل، وجعل الله في ذريته النبوة والكتاب.</li>
+            </ul>
+        </div>
+
+        <button class="restart-btn" onclick="restartQuiz()">إعادة الاختبار 🔄</button>
+    </div>
+</div>
+
+<footer>
+    إعداد لينة المزوغي 9 أساسي 7 | النموذجية علي طراد
+</footer>
+
+<script>
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playSound(type) {
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === 'correct') {
+            const now = audioCtx.currentTime;
+            osc.frequency.setValueAtTime(523.25, now);
+            osc.frequency.setValueAtTime(659.25, now + 0.1);
+            osc.frequency.setValueAtTime(783.99, now + 0.2);
+            gain.gain.setValueAtTime(0.2, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+            osc.start(now);
+            osc.stop(now + 0.4);
+        } else if (type === 'wrong') {
+            const now = audioCtx.currentTime;
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(220, now);
+            osc.frequency.setValueAtTime(180, now + 0.15);
+            gain.gain.setValueAtTime(0.2, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+            osc.start(now);
+            osc.stop(now + 0.35);
+        }
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        document.getElementById('theme-icon').innerText = isDark ? '☀️' : '🌙';
+        document.getElementById('theme-text').innerText = isDark ? 'الوضع الفاتح' : 'الوضع الداكن';
+    }
+
+    function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(err => {
+                alert(`تعذر تفعيل ملء الشاشة: ${err.message}`);
+            });
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
+    }
+
+    // دالة الخلط العشوائي لمنع الغش (Fisher-Yates Shuffle)
+    function shuffleArray(array) {
+        let currentIndex = array.length, randomIndex;
+        while (currentIndex != 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+
+    const rawQuizData = [
+        {
+            numStr: "السؤال الأوّل",
+            image: "images/q1.jpg",
+            question: "في أيّ منطقة وُلد سيدنا إبراهيم عليه السلام، وما هي البيئة الاجتماعية التي نشأ فيها؟",
+            rawOptions: [
+                "ولد في أرض بابل بالعراق، ونشأ في بيئة تعبد الأصنام والكواكب وكان أبوه آزر صانعاً للأصنام.",
+                "ولد في مصر وكان قومه يعبدون الفراعنة.",
+                "ولد في مكة المكرمة ونشأ على ملة آدم عليه السلام.",
+                "ولد في فلسطين وعاش حياته كلها في بيت المقدس."
+            ],
+            correctRawIndex: 0,
+            explanation: "إجابة صحيحة! نشأ إبراهيم عليه السلام في بابل ببلاد ما بين النهرين، حيث كان قومه غارقين في الشرك وعبادة الأوثان."
+        },
+        {
+            numStr: "السؤال الثّاني",
+            image: "images/q2.jpg",
+            question: "ما هي الظروف العقدية والاجتماعية التي واجهت سيدنا إبراهيم عند بداية دعوته لقومه؟",
+            rawOptions: [
+                "انتشار الشرك وعبادة الأصنام والكواكب، ورفض الملك النمرود وقومه لدعوة التوحيد الخالص.",
+                "كان الناس موحدين ولكنهم نسوا الصلاة فقط.",
+                "سيطرة الديانة اليهودية وتحريف أحكام التوراة.",
+                "عدم وجود أي بشر على الأرض سوى أسرته الصغيرة."
+            ],
+            correctRawIndex: 0,
+            explanation: "إجابة صحيحة! واجه إبراهيم عليه السلام مجتمعاً متصلباً في الشرك يقدس الأصنام والأجرام السماوية، ويقوده حاكم متجبر يدعى النمرود."
+        },
+        {
+            numStr: "السؤال الثّالث",
+            image: "images/q3.jpg",
+            question: "كيف استدل سيدنا إبراهيم عليه السلام بذكائه الفطري على بطلان ألوهية الكواكب والقمر والشمس؟",
+            rawOptions: [
+                "تدرج معهم بقوله «هذا ربي» حين رأى الكوكب ثم القمر ثم الشمس، فلما أفلَت وتغيبت قال: لا أحب الآفلين.",
+                "من خلال الاعتماد على التنجيم والسحر لمعرفة حركة الأفلاك.",
+                "بصمت وعدم مجادلة قومه في أمر السماء.",
+                "بإقناعهم أن الشمس والقمر لا يعكسان ضوء النجوم."
+            ],
+            correctRawIndex: 0,
+            explanation: "إجابة صحيحة! استخدم أسلوباً منطقياً وعقلياً بليغاً يثبت أن ما يغرب ويغيب وينتقل من حال لحال لا يصلح أن يكون إلهاً."
+        },
+        {
+            numStr: "السؤال الرّابع",
+            image: "images/q4.jpg",
+            question: "ما هو العهد العظيم والإنجاز الهام الذي قام سيدنا إبراهيم برفعه وبنائه مع ابنه إسماعيل عليهما السلام في مكة؟",
+            rawOptions: [
+                "رفع قواعد البيت العتيق (الكعبة المشرفة).",
+                "بناء سد مأرب العظيم لحفظ مياه الأمطار.",
+                "تأسيس مدينة الإسكندرية في مصر.",
+                "بناء الهياكل والمعابد في بابل."
+            ],
+            correctRawIndex: 0,
+            explanation: "إجابة صحيحة! قال تعالى: {وَإِذ يَرْفَعُ إِبْرَاهِيمُ الْقَوَاعِدَ مِنَ الْبَيْتِ وَإِسْمَاعِيلُ رَبَّنَا تَقَبَّلْ مِنَّا}."
+        },
+        {
+            numStr: "السؤال الخامس",
+            image: "images/q5.jpg",
+            question: "ما المعجزة الخالدة التي أيد الله بها إبراهيم عليه السلام عندما ألقاه قومه في النار العظيمة؟",
+            rawOptions: [
+                "جعل الله النار برداً وسلاماً عليه فلم تحرقه إلا قيوده.",
+                "انشقاق النار إلى نصفين حتى عبر منها سالماً.",
+                "تحول النار إلى ماء عذب غمر المكان.",
+                "إرسال ريح عاصفة أطفأت النار وطارت بقومه بعيداً."
+            ],
+            correctRawIndex: 0,
+            explanation: "إجابة صحيحة! أمر الله النار فقال: {يَا نَارُ كُونِي بَرْدًا وَسَلَامًا عَلَى إِبْرَاهِيمَ} فخرج منها سالماً آمناً."
+        },
+        {
+            numStr: "السؤال السّادس",
+            image: "images/q6.jpg",
+            question: "ما اسم الكتب أو الصحف الإلهية التي أُنزلت على سيدنا إبراهيم عليه السلام؟",
+            rawOptions: [
+                "صحف إبراهيم.",
+                "الزبور.",
+                "الإنجيل.",
+                "التوراة الكبرى."
+            ],
+            correctRawIndex: 0,
+            explanation: "إجابة صحيحة! ورد ذكرها في القرآن الكريم في قوله تعالى: {صُحُفِ إِبْرَاهِيمَ وَمُوسَى}."
+        },
+        {
+            numStr: "السؤال السّابع",
+            image: "images/q7.jpg",
+            question: "بماذا وُصف سيدنا إبراهيم عليه السلام في القرآن الكريم، ولماذا لُقب بـ «أبو الأنبياء» و«خليل الله»؟",
+            rawOptions: [
+                "لأن معظم الأنبياء من بعده جاؤوا من نسله (إسماعيل وإسحاق ويعقوب)، ولبلغة إخلاصه وخلته التامة لله.",
+                "لأنه كان ملكاً عظيماً يحكم العالم بأسره.",
+                "لأنه أول إنسان خلق على وجه الأرض.",
+                "لأنه برع في فنون الزراعة والبناء والعمارة فقط."
+            ],
+            correctRawIndex: 0,
+            explanation: "إجابة صحيحة! لقد جعل الله النبوة والكتاب في ذريته (سلسلة الأنبياء)، واتخذه الله خليلاً لكمال محبته وطاعته."
+        },
+        {
+            numStr: "السؤال الثّامن",
+            image: "images/q8.jpg",
+            question: "من هو النبي العظيم الذي سبِق عصر إبراهيم عليه السلام وكان مثلاً أعلى في الدعوة للتوحيد ومواجهة الطوفان؟",
+            rawOptions: [
+                "سيدنا نوح عليه السلام.",
+                "سيدنا موسى عليه السلام.",
+                "سيدنا عيسى عليه السلام.",
+                "سيدنا يوسف عليه السلام."
+            ],
+            correctRawIndex: 0,
+            explanation: "إجابة صحيحة! نوح عليه السلام كان من الأنبياء الكبار السابقين لإبراهيم، وقد أثنى الله على إبراهيم بقوله: {وَإِنَّ مِن شِيعَتِهِ لَإِبْرَاهِيمَ}."
+        },
+        {
+            numStr: "السؤال التّاسع",
+            image: "images/q9.jpg",
+            question: "من هما ولدا سيدنا إبراهيم اللذان حملا رسالة النبوة والتوحيد من بعده في ذريته؟",
+            rawOptions: [
+                "إسماعيل وإسحاق عليهما السلام.",
+                "هابيل وقابيل.",
+                "يحيى وعيسى.",
+                "داود وسليمان."
+            ],
+            correctRawIndex: 0,
+            explanation: "إجابة صحيحة! رزق الله إبراهيم بإسماعيل من هاجر، وإسحاق من سارة، ومنهما امتدت سلسلة الأنبياء."
+        },
+        {
+            numStr: "السؤال العاشر",
+            image: "images/q10.jpg",
+            question: "كيف عُرفت نهاية حياة شيخ الأنبياء إبراهيم عليه السلام وأين كانت داره ومستقره الأخير؟",
+            rawOptions: [
+                "عاش عمراً طيّباً مباركاً في الدعوة إلى الله، وتوفي في أرض فلسطين (الخليل) بعد أن أتم بلاغ الرسالة.",
+                "توفي صغيراً في ريعان شبابه بالعراق قبل الهجرة.",
+                "اختفى فجأة في السماء ولم يمت كالملائكة.",
+                "توفي في المدينة المنورة قرب المسجد النبوي."
+            ],
+            correctRawIndex: 0,
+            explanation: "إجابة صحيحة! توفي إبراهيم عليه السلام بعد أن ترك إرثاً عظيماً من التوحيد، ودُفن في مدينة الخليل بفلسطين (المسجد الإبراهيمي)."
+        }
+    ];
+
+    const arabLetters = ["أ)", "ب)", "ج)", "د)"];
+    let quizData = [];
+    let currentQuestion = 0;
+    let attempts = 0;
+    let totalStars = 0;
+    let currentShuffledOptions = [];
+    let currentCorrectIndex = -1;
+
+    function initQuiz() {
+        quizData = JSON.parse(JSON.stringify(rawQuizData));
+        currentQuestion = 0;
+        totalStars = 0;
+        document.getElementById("score-stars").innerText = "0";
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        const q = quizData[currentQuestion];
+        attempts = 0;
+
+        document.getElementById("question-number").innerText = `السؤال ${currentQuestion + 1} من أصل عشرة`;
+        document.getElementById("question-image").src = q.image;
+        document.getElementById("question-text").innerText = `${arabLetters[currentQuestion % 4]} ${q.question}`;
+        
+        const progressPercent = ((currentQuestion + 1) / quizData.length) * 100;
+        document.getElementById("progress-bar").style.width = `${progressPercent}%`;
+
+        document.getElementById("explanation-box").style.display = "none";
+        document.getElementById("feedback-text").innerText = "";
+        document.getElementById("next-btn").style.display = "none";
+
+        // تجهيز الخيارات ومزجها عشوائياً
+        let optionsObj = q.rawOptions.map((text, idx) => {
+            return { text: text, isCorrect: (idx === q.correctRawIndex) };
+        });
+
+        // خلط الخيارات عشوائياً
+        currentShuffledOptions = shuffleArray(optionsObj);
+        currentCorrectIndex = currentShuffledOptions.findIndex(item => item.isCorrect);
+
+        const optionsContainer = document.getElementById("options-list");
+        optionsContainer.innerHTML = "";
+
+        currentShuffledOptions.forEach((opt, index) => {
+            const btn = document.createElement("button");
+            btn.className = "option-btn";
+            btn.innerText = `${arabLetters[index]} ${opt.text}`;
+            btn.onclick = () => checkAnswer(index);
+            optionsContainer.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selectedIndex) {
+        const buttons = document.querySelectorAll(".option-btn");
+        attempts++;
+
+        if (selectedIndex === currentCorrectIndex) {
+            playSound('correct');
+            buttons[selectedIndex].classList.add("correct");
+            disableAllButtons();
+
+            let earnedStars = (attempts === 1) ? 3 : 1;
+            totalStars += earnedStars;
+            document.getElementById("score-stars").innerText = totalStars;
+
+            document.getElementById("feedback-text").innerHTML = `<span style="color:var(--success-border)">✨ أحسنت! إجابة صحيحة (+${earnedStars} 🌟)</span>`;
+            
+            showExplanation();
+            document.getElementById("next-btn").style.display = "inline-block";
+        } else {
+            playSound('wrong');
+            buttons[selectedIndex].classList.add("wrong");
+            buttons[selectedIndex].disabled = true;
+
+            if (attempts === 1) {
+                document.getElementById("feedback-text").innerHTML = `<span style="color:var(--error-border)">⚠️ محاولة خاطئة! فكّر جيداً وحاول مرة أخرى.</span>`;
+            } else {
+                disableAllButtons();
+                buttons[currentCorrectIndex].classList.add("correct");
+
+                document.getElementById("feedback-text").innerHTML = `<span style="color:var(--error-border)">❌ الإجابة الصحيحة مبيّنة باللون الأخضر.</span>`;
+                
+                showExplanation();
+                document.getElementById("next-btn").style.display = "inline-block";
+            }
+        }
+    }
+
+    function disableAllButtons() {
+        const buttons = document.querySelectorAll(".option-btn");
+        buttons.forEach(btn => btn.disabled = true);
+    }
+
+    function showExplanation() {
+        const q = quizData[currentQuestion];
+        const box = document.getElementById("explanation-box");
+        box.innerText = q.explanation;
+        box.style.display = "block";
+    }
+
+    function nextQuestion() {
+        currentQuestion++;
+        if (currentQuestion < quizData.length) {
+            loadQuestion();
+        } else {
+            showResults();
+        }
+    }
+
+    function showResults() {
+        document.getElementById("quiz-screen").style.display = "none";
+        document.getElementById("result-screen").style.display = "block";
+        document.getElementById("final-stars").innerText = `${totalStars} / 30 🌟`;
+
+        let badge = "تلميذ متألق في السيرة النبوية";
+        if (totalStars >= 25) {
+            badge = "🏆 خبير ومتقن لسيرة خليل الله إبراهيم عليه السلام";
+        } else if (totalStars >= 18) {
+            badge = "🌟 تلميذ متميز وعارف بالسيرة العطرة";
+        }
+        document.getElementById("badge-title").innerText = badge;
+    }
+
+    function restartQuiz() {
+        document.getElementById("result-screen").style.display = "none";
+        document.getElementById("quiz-screen").style.display = "block";
+        initQuiz();
+    }
+
+    window.onload = initQuiz;
+</script>
+</body>
+</html>
